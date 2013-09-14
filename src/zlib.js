@@ -59,18 +59,7 @@ ZLIB.Compressor.prototype.process = function() {
     for (var i = 3; i >= 0; i--)
         this._outputBuffer.writeByte((this._adler32Checksum.checksum() >> i * 8) & 0xff);
 }
-/*
-ZLIB.Compressor.prototype._process = function() {
-    var adler32 = new Adler32();
-    for (var i = 0; i < deflateCompressor._encodedData.length; i++) {
-        this._encodedData[this._encodedDataPos++] = deflateCompressor._encodedData[i];
-        adler32.updateForByte(this._encodedData[i]);
-    }
 
-    for (var i = 3; i >= 0; i--)
-        this._encodedData[this._encodedDataPos++] = (adler32.checksum() >> i * 8) & 0xff;
-}
-*/
 ZLIB.Decompressor = function(inputBuffer, outputBuffer) {
     this._inputBuffer = inputBuffer;
     this._outputBuffer = outputBuffer;
