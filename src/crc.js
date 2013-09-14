@@ -19,55 +19,55 @@ var CRC;
 
 (function () {
 
-    _supportedCRCPolynomials = {
-        'CRC-32': {
-            normal: 0x04C11DB7,
-            reversed: 0xEDB88320,
-        },
-    };
+_supportedCRCPolynomials = {
+    'CRC-32': {
+        normal: 0x04C11DB7,
+        reversed: 0xEDB88320,
+    },
+};
 
-    _CRCTable = {};
+_CRCTable = {};
 
-    function _computeCRCTableForPolynomial(polynomialName) {
-        this._CRCTable[polynomialName] = [];
+function _computeCRCTableForPolynomial(polynomialName) {
+    this._CRCTable[polynomialName] = [];
 
-        for (var i = 0; i < 256; i++) {
-            var c = i;
-            for (var j = 0; j < 8; j++) {
-                if (c & 1)
-                    c = Utils.adjustValue(_supportedCRCPolynomials[polynomialName].reversed ^ (c >>> 1));
-                else
-                    c = c >>> 1;
-            }
-
-            _CRCTable[polynomialName][i] = c;
+    for (var i = 0; i < 256; i++) {
+        var c = i;
+        for (var j = 0; j < 8; j++) {
+            if (c & 1)
+                c = Utils.adjustValue(_supportedCRCPolynomials[polynomialName].reversed ^ (c >>> 1));
+            else
+                c = c >>> 1;
         }
+
+        _CRCTable[polynomialName][i] = c;
     }
+}
 
-    CRC = function(polynomialName) {
-        if (!(polynomialName in _supportedCRCPolynomials))
-            return;
+CRC = function(polynomialName) {
+    if (!(polynomialName in _supportedCRCPolynomials))
+        return;
 
-        if (!(polynomialName in _CRCTable))
-            _computeCRCTableForPolynomial(polynomialName);
+    if (!(polynomialName in _CRCTable))
+        _computeCRCTableForPolynomial(polynomialName);
 
-        this._crc = 0xffffffff;
-        this._polynomialName = polynomialName;
-    }
+    this._crc = 0xffffffff;
+    this._polynomialName = polynomialName;
+}
 
-    CRC.prototype.updateForByte = function(byteValue) {
-        if (!this._crc)
-            return;
+CRC.prototype.updateForByte = function(byteValue) {
+    if (!this._crc)
+        return;
 
-        var v = Utils.adjustValue(this._crc ^ byteValue);
-        this._crc = _CRCTable[this._polynomialName][v & 0xff] ^ (this._crc >>> 8);
-    }
+    var v = Utils.adjustValue(this._crc ^ byteValue);
+    this._crc = _CRCTable[this._polynomialName][v & 0xff] ^ (this._crc >>> 8);
+}
 
-    CRC.prototype.checksum = function(byteValue) {
-        if (!this._crc)
-            return null;
+CRC.prototype.checksum = function(byteValue) {
+    if (!this._crc)
+        return null;
 
-        return Utils.adjustValue(this._crc ^ 0xffffffff);
-    }
+    return Utils.adjustValue(this._crc ^ 0xffffffff);
+}
 
 })();

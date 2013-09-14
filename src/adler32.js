@@ -19,18 +19,18 @@ var Adler32;
 
 (function() {
 
-    Adler32 = function() {
-        this._s1 = 1;
-        this._s2 = 0;
-    }
+Adler32 = function() {
+    this._s1 = 1;
+    this._s2 = 0;
+}
 
-    Adler32.prototype.updateForByte = function(byteValue) {
-        this._s1 = (this._s1 + byteValue) % 65521;
-        this._s2 = (this._s1 + this._s2) % 65521;
-    }
+Adler32.prototype.updateForByte = function(byteValue) {
+    this._s1 = (this._s1 + byteValue) % 65521;
+    this._s2 = (this._s1 + this._s2) % 65521;
+}
 
-    Adler32.prototype.checksum = function() {
-        return this._s2 * 65536 + this._s1;
-    }
+Adler32.prototype.checksum = function() {
+    return this._s2 * 65536 + this._s1;
+}
 
 })();

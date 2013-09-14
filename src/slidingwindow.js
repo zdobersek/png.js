@@ -19,37 +19,37 @@ var SlidingWindow;
 
 (function () {
 
-    SlidingWindow = function(windowSize) {
-        this._windowSize = windowSize;
+SlidingWindow = function(windowSize) {
+    this._windowSize = windowSize;
 
-        this._sequenceList = [];
-        this._sequences = {};
-    }
+    this._sequenceList = [];
+    this._sequences = {};
+}
 
-    SlidingWindow.prototype.addSequence = function(sequence, pos) {
-        if (!(sequence in this._sequences))
-            this._sequences[sequence] = []
+SlidingWindow.prototype.addSequence = function(sequence, pos) {
+    if (!(sequence in this._sequences))
+        this._sequences[sequence] = []
 
-        this._sequences[sequence].unshift(pos)
-        this._sequenceList.push(sequence);
-        this._adjustSequenceList();
-    }
+    this._sequences[sequence].unshift(pos)
+    this._sequenceList.push(sequence);
+    this._adjustSequenceList();
+}
 
-    SlidingWindow.prototype.matchesForSequence = function(sequence) {
-        if (!(sequence in this._sequences))
-            return [];
+SlidingWindow.prototype.matchesForSequence = function(sequence) {
+    if (!(sequence in this._sequences))
+        return [];
 
-        return this._sequences[sequence];
-    }
+    return this._sequences[sequence];
+}
 
-    SlidingWindow.prototype._adjustSequenceList = function() {
-        if (this._sequenceList.length <= this._windowSize)
-            return;
+SlidingWindow.prototype._adjustSequenceList = function() {
+    if (this._sequenceList.length <= this._windowSize)
+        return;
 
-        var removedSequence = this._sequenceList.shift();
-        this._sequences[removedSequence].pop();
-        if (!this._sequences[removedSequence].length)
-            delete this._sequences[removedSequence];
-    }
+    var removedSequence = this._sequenceList.shift();
+    this._sequences[removedSequence].pop();
+    if (!this._sequences[removedSequence].length)
+        delete this._sequences[removedSequence];
+}
 
 })();

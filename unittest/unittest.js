@@ -17,47 +17,47 @@
 
 (function () {
 
-    module('Utils tests');
-    test('adjustValue', utilsTestAdjustValue);
-    test('readUint32', utilsTestReadUint32);
+module('Utils tests');
+test('adjustValue', utilsTestAdjustValue);
+test('readUint32', utilsTestReadUint32);
 
-    module('Adler32 tests');
-    test('computation', adler32TestComputation);
+module('Adler32 tests');
+test('computation', adler32TestComputation);
 
-    module('CRC tests');
-    test('unsupported polynomial', crcTestUnsupportedPolynomial);
-    test('CRC-32 support', crcTestCRC32Support);
-    test('CRC-32 computation', crcTestCRC32Computation);
+module('CRC tests');
+test('unsupported polynomial', crcTestUnsupportedPolynomial);
+test('CRC-32 support', crcTestCRC32Support);
+test('CRC-32 computation', crcTestCRC32Computation);
 
-    module('Huffman code tests');
-    test('end-to-end code processing', huffmanCodeTestProcessingEndToEnd);
+module('Huffman code tests');
+test('end-to-end code processing', huffmanCodeTestProcessingEndToEnd);
 
-    module('Buffer tests');
-    test('RBuffer readByte', rbufferTestReadByte);
-    test('RBuffer readBits', rbufferTestReadBits);
-    test('RBuffer peekBits', rbufferTestPeekBits);
-    test('RBuffer reading', rbufferTestReading);
-    test('WBuffer writeByte', wbufferTestWriteByte);
-    test('WBuffer writeBits', wbufferTestWriteBits);
-    test('WBuffer writing', wbufferTestWriting);
-    test('WBuffer copyFromSelf', wbufferTestCopyFromSelf);
+module('Buffer tests');
+test('RBuffer readByte', rbufferTestReadByte);
+test('RBuffer readBits', rbufferTestReadBits);
+test('RBuffer peekBits', rbufferTestPeekBits);
+test('RBuffer reading', rbufferTestReading);
+test('WBuffer writeByte', wbufferTestWriteByte);
+test('WBuffer writeBits', wbufferTestWriteBits);
+test('WBuffer writing', wbufferTestWriting);
+test('WBuffer copyFromSelf', wbufferTestCopyFromSelf);
 
-    module('Sliding window tests');
-    test('sequence matching', slidingWindowTestSequenceMatching);
-    test('window size', slidingWindowTestWindowSize);
-    test('matches for sequence', slidingWindowTestMatchesForSequence);
-    test('sequence updating', slidingWindowTestSequenceUpdating);
+module('Sliding window tests');
+test('sequence matching', slidingWindowTestSequenceMatching);
+test('window size', slidingWindowTestWindowSize);
+test('matches for sequence', slidingWindowTestMatchesForSequence);
+test('sequence updating', slidingWindowTestSequenceUpdating);
 
-    module('DEFLATE tests');
-    test('end-to-end compressing', deflateTestCompressingEndToEnd);
-    test('end-to-end decompressing', deflateTestDecompressingEndToEnd);
-    test('roundtrip', deflateTestRoundtrip);
-    test('fibonacci roundtrip', deflateTestFibonacciRoundtrip);
+module('DEFLATE tests');
+test('end-to-end compressing', deflateTestCompressingEndToEnd);
+test('end-to-end decompressing', deflateTestDecompressingEndToEnd);
+test('roundtrip', deflateTestRoundtrip);
+test('fibonacci roundtrip', deflateTestFibonacciRoundtrip);
 
-    module('ZLIB tests');
-    test('end-to-end decompressing', zlibTestDecompressingEndToEnd);
-    test('end-to-end compressing', zlibTestCompressingEndToEnd);
-    test('roundtrip', zlibTestRoundtrip);
-    test('fibonacci roundtrip', zlibTestFibonacciRoundtrip);
+module('ZLIB tests');
+test('end-to-end decompressing', zlibTestDecompressingEndToEnd);
+test('end-to-end compressing', zlibTestCompressingEndToEnd);
+test('roundtrip', zlibTestRoundtrip);
+test('fibonacci roundtrip', zlibTestFibonacciRoundtrip);
 
 })();

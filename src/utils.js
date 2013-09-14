@@ -19,12 +19,12 @@ var Utils = {};
 
 (function () {
 
-    Utils.adjustValue = function(value) {
-        return value < 0 ? value + 0xffffffff + 1 : value;
-    }
+Utils.adjustValue = function(value) {
+    return value < 0 ? value + 0xffffffff + 1 : value;
+}
 
-    Utils.readUint32 = function(data) {
-        return Utils.adjustValue(data[0] << 24 | data[1] << 16 | data[2] << 8 | data[3]);
-    }
+Utils.readUint32 = function(data) {
+    return Utils.adjustValue(data[0] << 24 | data[1] << 16 | data[2] << 8 | data[3]);
+}
 
 })();
