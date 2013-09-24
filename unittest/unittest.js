@@ -60,4 +60,8 @@ test('end-to-end compressing', zlibTestCompressingEndToEnd);
 test('roundtrip', zlibTestRoundtrip);
 test('fibonacci roundtrip', zlibTestFibonacciRoundtrip);
 
+module('PNG tests');
+test('PNG chunk properties', pngChunksTestProperties);
+test('PNG IHDR chunk', pngChunksTestIHDRChunk);
+
 })();
