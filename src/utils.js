@@ -19,6 +19,15 @@ var Utils = {};
 
 (function () {
 
+Utils.error = function(message) {
+    throw new Error(message);
+}
+
+Utils.assert = function(condition, message) {
+    if (!condition)
+        Utils.error(message);
+}
+
 Utils.adjustValue = function(value) {
     return value < 0 ? value + 0xffffffff + 1 : value;
 }
