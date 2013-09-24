@@ -91,7 +91,7 @@ function pngChunksTestIHDRChunk() {
         });
 
         var processedObject = {};
-        PNG.supportedChunkTypes[PNG.Types.Chunks.IHDR].processFunction.apply(processedObject, [chunk]);
+        PNG.supportedChunks[PNG.Types.Chunks.IHDR].processFunction.apply(processedObject, [chunk]);
         Object.keys(testCases[i].expectedProcessedProperties).forEach(function(property) {
             strictEqual(processedObject[property], testCases[i].expectedProcessedProperties[property]);
         });

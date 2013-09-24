@@ -43,27 +43,23 @@ function _processIHDRChunk(chunk) {
     this.interlaceMethod = chunk.data[12];
 }
 
-PNG.supportedChunkTypes = {
-    0: { type: PNG.Types.Chunks.IHDR, rawType: IHDRChunkType, processFunction: _processIHDRChunk },
-};
+PNG.supportedChunks = {};
+(function() {
+    PNG.supportedChunks[PNG.Types.Chunks.IHDR] = { rawType: IHDRChunkType, processFunction: _processIHDRChunk, };
+})();
 
-var _chunkTypeForRawType = {};
-Object.keys(PNG.supportedChunkTypes).forEach(function(supportedChunkType) {
-    var chunkType = PNG.supportedChunkTypes[supportedChunkType];
-    _chunkTypeForRawType[Utils.readUint32(chunkType.rawType)] = chunkType.type;
-});
-
-PNG.chunkTypeForRawType = function(rawType) {
-    return _chunkTypeForRawType[Utils.readUint32(rawType)];
-}
+PNG.chunkTypeForRawType = {};
+(function() {
+    PNG.chunkTypeForRawType[Utils.readUint32(IHDRChunkType)] = PNG.Types.Chunks.IHDR;
+})();
 
 PNG.Chunk = function(chunk) {
     this.isCritical = !(chunk.type[0] & (1 << 5));
     this.isPublic = !(chunk.type[1] & (1 << 5));
     this.isSafeToCopy = !!(chunk.type[3] & (1 << 5));
 
-    this.chunkType = PNG.chunkTypeForRawType(chunk.type);
-    this.isSupported = !(chunk.type[2] & (1 << 5)) && (this.chunkType != undefined);
+    this.chunkType = PNG.chunkTypeForRawType[Utils.readUint32(chunk.type)];
+    this.isSupported = !(chunk.type[2] & (1 << 5)) && (this.chunkType !== undefined);
 
     this.length = chunk.length;
     this.data = chunk.data;
